@@ -19,11 +19,11 @@ build:
 #	docker build -t $(REPO):cli-8.2-composer --build-arg php_version=8.2 --build-arg composer_version=$(COMPOSER_VERSION) cli-composer
 #	docker build -t $(REPO):cli-8.1-composer --build-arg php_version=8.1 --build-arg composer_version=$(COMPOSER_VERSION) cli-composer
 	# FPM
-	docker build -t $(REPO):fpm-8.3 --build-arg php_version=83 --build-arg alpine_version=edge fpm
+	#docker build -t $(REPO):fpm-8.3 --build-arg php_version=83 --build-arg alpine_version=edge fpm
 	#docker build -t $(REPO):fpm-8.2 --build-arg php_version=82 --build-arg alpine_version=edge fpm
 	#docker build -t $(REPO):fpm-8.1 --build-arg php_version=81 --build-arg alpine_version=3.17 fpm
 	# FPM (WKHTMLTOPDF)
-	docker build -t $(REPO):fpm-8.3-wkhtmltopdf --build-arg php_version=8.3 fpm-wkhtmltopdf
+	docker buildx build --platform linux/amd64 -t $(REPO):fpm-8.3-wkhtmltopdf --build-arg php_version=8.3 fpm-wkhtmltopdf --push
 	#docker build -t $(REPO):fpm-8.2-wkhtmltopdf --build-arg php_version=8.2 fpm-wkhtmltopdf
 	#docker build -t $(REPO):fpm-8.1-wkhtmltopdf --build-arg php_version=8.1 fpm-wkhtmltopdf
 
